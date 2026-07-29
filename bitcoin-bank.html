@@ -387,14 +387,13 @@
         </div>
         <table>
           <thead>
-            <tr><th>Time</th><th>Distribution</th><th>WBTC paid</th><th>Tx</th></tr>
+            <tr><th>WBTC paid</th><th>Tx</th></tr>
           </thead>
           <tbody id="ledger-body">
-            <tr><td colspan="4" style="color:var(--paper-dim)">Connecting to chain…</td></tr>
+            <tr><td colspan="2" style="color:var(--paper-dim)">Connecting to chain…</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="note">// Connect this table to your distributor contract events after deploy.</p>
     </div>
   </section>
 
@@ -470,27 +469,6 @@
   tick();
   setInterval(tick, 1000);
 
-  // ── ledger placeholder rows (replace with contract events) ──
-  const body = document.getElementById('ledger-body');
-  function renderLedger(){
-    const rows = [];
-    const now = Date.now();
-    for (let i = 1; i <= 6; i++){
-      const t = new Date(Math.floor((now) / EPOCH_MS - i) * EPOCH_MS);
-      const hh = String(t.getHours()).padStart(2,'0');
-      const mm = String(t.getMinutes()).padStart(2,'0');
-      const epoch = Math.floor(t.getTime() / EPOCH_MS);
-      rows.push(`<tr>
-        <td>${hh}:${mm}</td>
-        <td>#${epoch.toLocaleString()}</td>
-        <td class="amt">pending deploy</td>
-        <td class="addr">—</td>
-      </tr>`);
-    }
-    body.innerHTML = rows.join('');
-  }
-  renderLedger();
-  setInterval(renderLedger, 30000);
 </script>
 </body>
 </html>
